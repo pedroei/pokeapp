@@ -94,9 +94,8 @@ const PokemonState = (props) => {
           }
         });
         //console.log(allevolutions);
-
-        getEvolutionsIds(allevolutions);
       }
+      getEvolutionsIds(allevolutions);
     } catch (err) {
       console.error(err);
     }
