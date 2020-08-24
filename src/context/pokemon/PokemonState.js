@@ -64,7 +64,7 @@ const PokemonState = (props) => {
   const getEvolutions = async (id) => {
     try {
       const result = await axios.get(
-        `http://pokeapi.co/api/v2/pokemon-species/${id}`
+        `https://pokeapi.co/api/v2/pokemon-species/${id}`
       );
 
       getChain(result.data.evolution_chain.url);
@@ -107,7 +107,7 @@ const PokemonState = (props) => {
     axios
       .all(
         chain.map((name) =>
-          axios.get(`http://pokeapi.co/api/v2/pokemon/${name}`)
+          axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`)
         )
       )
       .then(
