@@ -16,7 +16,7 @@ const PokemonList = ({ pokemonUrls }) => {
   return loading ? (
     <Spinner />
   ) : (
-    <div className="cards2 mb-5">
+    <div className="cards2">
       {pokemons.map((pokemon) => (
         <PokemonCard key={pokemon.data.id} pokemon={pokemon.data} />
       ))}

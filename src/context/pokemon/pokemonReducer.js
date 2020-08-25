@@ -12,6 +12,8 @@ export default (state, action) => {
       return {
         ...state,
         pokemonUrls: action.payload.data.results.map((result) => result.url),
+        nextPage: action.payload.data.next,
+        prevPage: action.payload.data.previous,
         currentPokemon: null,
         currentEvolutions: null,
         loading: false,

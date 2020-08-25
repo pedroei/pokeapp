@@ -13,6 +13,8 @@ import {
 const PokemonState = (props) => {
   const initialState = {
     pokemonUrls: [],
+    prevPage: null,
+    nextPage: null,
     pokemons: [],
     currentPokemon: null,
     currentEvolutions: null,
@@ -26,8 +28,20 @@ const PokemonState = (props) => {
     setLoading();
     try {
       const result = await axios.get(
-        'https://pokeapi.co/api/v2/pokemon?limit=151'
+        'https://pokeapi.co/api/v2/pokemon?limit=40'
       );
+
+      dispatch({ type: GET_POKEMONS_URL, payload: result });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  // Cahnge pages page
+  const changePage = async (page) => {
+    setLoading();
+    try {
+      const result = await axios.get(page);
 
       dispatch({ type: GET_POKEMONS_URL, payload: result });
     } catch (err) {
@@ -127,6 +141,8 @@ const PokemonState = (props) => {
     <PokemonContext.Provider
       value={{
         pokemonUrls: state.pokemonUrls,
+        prevPage: state.prevPage,
+        nextPage: state.nextPage,
         pokemons: state.pokemons,
         loading: state.loading,
         currentPokemon: state.currentPokemon,
@@ -135,6 +151,7 @@ const PokemonState = (props) => {
         getPokemons,
         getSinglePokemon,
         getEvolutions,
+        changePage,
       }}
     >
       {props.children}
